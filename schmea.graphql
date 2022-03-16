@@ -2,10 +2,55 @@
 ### Do not make changes to this file directly
 
 
+type Captain {
+  id: ID!
+  profile: Profile!
+  rating: Int!
+}
+
+type Profile {
+  address: String!
+  email: String!
+  gender: String!
+  id: ID!
+  name: String!
+  phone: String!
+}
+
 type Query {
   ok: Boolean!
 }
 
+type Rating {
+  captain: Captain!
+  id: ID!
+  rating: Int!
+  ride: Ride!
+  user: User!
+}
+
+type Ride {
+  captain: Captain!
+  dropOffAddress: String!
+  fare: Int!
+  id: ID!
+  rating: Rating!
+  startAddress: String!
+  user: User!
+  vehicle: Vehicle!
+}
+
 type User {
-  name: String!
+  id: ID!
+  profile: Profile!
+}
+
+type Vehicle {
+  captain: Captain!
+  color: String!
+  id: ID!
+  make: String!
+  model: String!
+  plateNumber: Int!
+  year: Int!
 }

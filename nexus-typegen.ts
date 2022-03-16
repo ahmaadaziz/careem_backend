@@ -28,9 +28,49 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
-  Query: {};
-  User: { // root type
+  Captain: { // root type
+    id: string; // ID!
+    profile: NexusGenRootTypes['Profile']; // Profile!
+    rating: number; // Int!
+  }
+  Profile: { // root type
+    address: string; // String!
+    email: string; // String!
+    gender: string; // String!
+    id: string; // ID!
     name: string; // String!
+    phone: string; // String!
+  }
+  Query: {};
+  Rating: { // root type
+    captain: NexusGenRootTypes['Captain']; // Captain!
+    id: string; // ID!
+    rating: number; // Int!
+    ride: NexusGenRootTypes['Ride']; // Ride!
+    user: NexusGenRootTypes['User']; // User!
+  }
+  Ride: { // root type
+    captain: NexusGenRootTypes['Captain']; // Captain!
+    dropOffAddress: string; // String!
+    fare: number; // Int!
+    id: string; // ID!
+    rating: NexusGenRootTypes['Rating']; // Rating!
+    startAddress: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+    vehicle: NexusGenRootTypes['Vehicle']; // Vehicle!
+  }
+  User: { // root type
+    id: string; // ID!
+    profile: NexusGenRootTypes['Profile']; // Profile!
+  }
+  Vehicle: { // root type
+    captain: NexusGenRootTypes['Captain']; // Captain!
+    color: string; // String!
+    id: string; // ID!
+    make: string; // String!
+    model: string; // String!
+    plateNumber: number; // Int!
+    year: number; // Int!
   }
 }
 
@@ -45,20 +85,100 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Captain: { // field return type
+    id: string; // ID!
+    profile: NexusGenRootTypes['Profile']; // Profile!
+    rating: number; // Int!
+  }
+  Profile: { // field return type
+    address: string; // String!
+    email: string; // String!
+    gender: string; // String!
+    id: string; // ID!
+    name: string; // String!
+    phone: string; // String!
+  }
   Query: { // field return type
     ok: boolean; // Boolean!
   }
+  Rating: { // field return type
+    captain: NexusGenRootTypes['Captain']; // Captain!
+    id: string; // ID!
+    rating: number; // Int!
+    ride: NexusGenRootTypes['Ride']; // Ride!
+    user: NexusGenRootTypes['User']; // User!
+  }
+  Ride: { // field return type
+    captain: NexusGenRootTypes['Captain']; // Captain!
+    dropOffAddress: string; // String!
+    fare: number; // Int!
+    id: string; // ID!
+    rating: NexusGenRootTypes['Rating']; // Rating!
+    startAddress: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+    vehicle: NexusGenRootTypes['Vehicle']; // Vehicle!
+  }
   User: { // field return type
-    name: string; // String!
+    id: string; // ID!
+    profile: NexusGenRootTypes['Profile']; // Profile!
+  }
+  Vehicle: { // field return type
+    captain: NexusGenRootTypes['Captain']; // Captain!
+    color: string; // String!
+    id: string; // ID!
+    make: string; // String!
+    model: string; // String!
+    plateNumber: number; // Int!
+    year: number; // Int!
   }
 }
 
 export interface NexusGenFieldTypeNames {
+  Captain: { // field return type name
+    id: 'ID'
+    profile: 'Profile'
+    rating: 'Int'
+  }
+  Profile: { // field return type name
+    address: 'String'
+    email: 'String'
+    gender: 'String'
+    id: 'ID'
+    name: 'String'
+    phone: 'String'
+  }
   Query: { // field return type name
     ok: 'Boolean'
   }
+  Rating: { // field return type name
+    captain: 'Captain'
+    id: 'ID'
+    rating: 'Int'
+    ride: 'Ride'
+    user: 'User'
+  }
+  Ride: { // field return type name
+    captain: 'Captain'
+    dropOffAddress: 'String'
+    fare: 'Int'
+    id: 'ID'
+    rating: 'Rating'
+    startAddress: 'String'
+    user: 'User'
+    vehicle: 'Vehicle'
+  }
   User: { // field return type name
-    name: 'String'
+    id: 'ID'
+    profile: 'Profile'
+  }
+  Vehicle: { // field return type name
+    captain: 'Captain'
+    color: 'String'
+    id: 'ID'
+    make: 'String'
+    model: 'String'
+    plateNumber: 'Int'
+    year: 'Int'
   }
 }
 
