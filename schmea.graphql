@@ -5,7 +5,15 @@
 type Captain {
   id: ID!
   profile: Profile!
-  rating: Int!
+  profileId: Int!
+  rating: Int
+}
+
+type Mutation {
+  createCaptain(address: String!, email: String!, gender: String!, name: String!, phone: String!, rating: Int): Captain!
+  createRide(captainId: Int!, dropOffAddress: String!, startAddress: String!, userId: Int!, vehicleId: Int!): Ride!
+  createUser(address: String!, email: String!, gender: String!, name: String!, phone: String!): User!
+  createVehicle(captainId: Int!, color: String!, make: String!, model: String!, plateNumber: String!, year: Int!): Vehicle!
 }
 
 type Profile {
@@ -18,39 +26,49 @@ type Profile {
 }
 
 type Query {
-  ok: Boolean!
+  getCaptain(id: Int!): Captain!
+  getRating(id: Int!): Rating!
+  getUser(id: Int!): User!
+  getVehicle(id: Int!): Vehicle!
 }
 
 type Rating {
   captain: Captain!
+  captainId: Int!
   id: ID!
   rating: Int!
-  ride: Ride!
   user: User!
+  userId: Int!
 }
 
 type Ride {
   captain: Captain!
+  captainId: Int!
   dropOffAddress: String!
-  fare: Int!
+  fare: Int
   id: ID!
   rating: Rating!
+  ratingId: Int!
   startAddress: String!
   user: User!
+  userId: Int!
   vehicle: Vehicle!
+  vehicleId: Int!
 }
 
 type User {
   id: ID!
   profile: Profile!
+  profileId: Int!
 }
 
 type Vehicle {
   captain: Captain!
+  captainId: Int!
   color: String!
   id: ID!
   make: String!
   model: String!
-  plateNumber: Int!
+  plateNumber: String!
   year: Int!
 }

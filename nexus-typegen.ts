@@ -31,8 +31,10 @@ export interface NexusGenObjects {
   Captain: { // root type
     id: string; // ID!
     profile: NexusGenRootTypes['Profile']; // Profile!
-    rating: number; // Int!
+    profileId: number; // Int!
+    rating?: number | null; // Int
   }
+  Mutation: {};
   Profile: { // root type
     address: string; // String!
     email: string; // String!
@@ -44,32 +46,38 @@ export interface NexusGenObjects {
   Query: {};
   Rating: { // root type
     captain: NexusGenRootTypes['Captain']; // Captain!
+    captainId: number; // Int!
     id: string; // ID!
     rating: number; // Int!
-    ride: NexusGenRootTypes['Ride']; // Ride!
     user: NexusGenRootTypes['User']; // User!
+    userId: number; // Int!
   }
   Ride: { // root type
     captain: NexusGenRootTypes['Captain']; // Captain!
+    captainId: number; // Int!
     dropOffAddress: string; // String!
-    fare: number; // Int!
     id: string; // ID!
     rating: NexusGenRootTypes['Rating']; // Rating!
+    ratingId: number; // Int!
     startAddress: string; // String!
     user: NexusGenRootTypes['User']; // User!
+    userId: number; // Int!
     vehicle: NexusGenRootTypes['Vehicle']; // Vehicle!
+    vehicleId: number; // Int!
   }
   User: { // root type
     id: string; // ID!
     profile: NexusGenRootTypes['Profile']; // Profile!
+    profileId: number; // Int!
   }
   Vehicle: { // root type
     captain: NexusGenRootTypes['Captain']; // Captain!
+    captainId: number; // Int!
     color: string; // String!
     id: string; // ID!
     make: string; // String!
     model: string; // String!
-    plateNumber: number; // Int!
+    plateNumber: string; // String!
     year: number; // Int!
   }
 }
@@ -88,7 +96,14 @@ export interface NexusGenFieldTypes {
   Captain: { // field return type
     id: string; // ID!
     profile: NexusGenRootTypes['Profile']; // Profile!
-    rating: number; // Int!
+    profileId: number; // Int!
+    rating: number | null; // Int
+  }
+  Mutation: { // field return type
+    createCaptain: NexusGenRootTypes['Captain']; // Captain!
+    createRide: NexusGenRootTypes['Ride']; // Ride!
+    createUser: NexusGenRootTypes['User']; // User!
+    createVehicle: NexusGenRootTypes['Vehicle']; // Vehicle!
   }
   Profile: { // field return type
     address: string; // String!
@@ -99,36 +114,46 @@ export interface NexusGenFieldTypes {
     phone: string; // String!
   }
   Query: { // field return type
-    ok: boolean; // Boolean!
+    getCaptain: NexusGenRootTypes['Captain']; // Captain!
+    getRating: NexusGenRootTypes['Rating']; // Rating!
+    getUser: NexusGenRootTypes['User']; // User!
+    getVehicle: NexusGenRootTypes['Vehicle']; // Vehicle!
   }
   Rating: { // field return type
     captain: NexusGenRootTypes['Captain']; // Captain!
+    captainId: number; // Int!
     id: string; // ID!
     rating: number; // Int!
-    ride: NexusGenRootTypes['Ride']; // Ride!
     user: NexusGenRootTypes['User']; // User!
+    userId: number; // Int!
   }
   Ride: { // field return type
     captain: NexusGenRootTypes['Captain']; // Captain!
+    captainId: number; // Int!
     dropOffAddress: string; // String!
-    fare: number; // Int!
+    fare: number | null; // Int
     id: string; // ID!
     rating: NexusGenRootTypes['Rating']; // Rating!
+    ratingId: number; // Int!
     startAddress: string; // String!
     user: NexusGenRootTypes['User']; // User!
+    userId: number; // Int!
     vehicle: NexusGenRootTypes['Vehicle']; // Vehicle!
+    vehicleId: number; // Int!
   }
   User: { // field return type
     id: string; // ID!
     profile: NexusGenRootTypes['Profile']; // Profile!
+    profileId: number; // Int!
   }
   Vehicle: { // field return type
     captain: NexusGenRootTypes['Captain']; // Captain!
+    captainId: number; // Int!
     color: string; // String!
     id: string; // ID!
     make: string; // String!
     model: string; // String!
-    plateNumber: number; // Int!
+    plateNumber: string; // String!
     year: number; // Int!
   }
 }
@@ -137,7 +162,14 @@ export interface NexusGenFieldTypeNames {
   Captain: { // field return type name
     id: 'ID'
     profile: 'Profile'
+    profileId: 'Int'
     rating: 'Int'
+  }
+  Mutation: { // field return type name
+    createCaptain: 'Captain'
+    createRide: 'Ride'
+    createUser: 'User'
+    createVehicle: 'Vehicle'
   }
   Profile: { // field return type name
     address: 'String'
@@ -148,41 +180,97 @@ export interface NexusGenFieldTypeNames {
     phone: 'String'
   }
   Query: { // field return type name
-    ok: 'Boolean'
+    getCaptain: 'Captain'
+    getRating: 'Rating'
+    getUser: 'User'
+    getVehicle: 'Vehicle'
   }
   Rating: { // field return type name
     captain: 'Captain'
+    captainId: 'Int'
     id: 'ID'
     rating: 'Int'
-    ride: 'Ride'
     user: 'User'
+    userId: 'Int'
   }
   Ride: { // field return type name
     captain: 'Captain'
+    captainId: 'Int'
     dropOffAddress: 'String'
     fare: 'Int'
     id: 'ID'
     rating: 'Rating'
+    ratingId: 'Int'
     startAddress: 'String'
     user: 'User'
+    userId: 'Int'
     vehicle: 'Vehicle'
+    vehicleId: 'Int'
   }
   User: { // field return type name
     id: 'ID'
     profile: 'Profile'
+    profileId: 'Int'
   }
   Vehicle: { // field return type name
     captain: 'Captain'
+    captainId: 'Int'
     color: 'String'
     id: 'ID'
     make: 'String'
     model: 'String'
-    plateNumber: 'Int'
+    plateNumber: 'String'
     year: 'Int'
   }
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createCaptain: { // args
+      address: string; // String!
+      email: string; // String!
+      gender: string; // String!
+      name: string; // String!
+      phone: string; // String!
+      rating?: number | null; // Int
+    }
+    createRide: { // args
+      captainId: number; // Int!
+      dropOffAddress: string; // String!
+      startAddress: string; // String!
+      userId: number; // Int!
+      vehicleId: number; // Int!
+    }
+    createUser: { // args
+      address: string; // String!
+      email: string; // String!
+      gender: string; // String!
+      name: string; // String!
+      phone: string; // String!
+    }
+    createVehicle: { // args
+      captainId: number; // Int!
+      color: string; // String!
+      make: string; // String!
+      model: string; // String!
+      plateNumber: string; // String!
+      year: number; // Int!
+    }
+  }
+  Query: {
+    getCaptain: { // args
+      id: number; // Int!
+    }
+    getRating: { // args
+      id: number; // Int!
+    }
+    getUser: { // args
+      id: number; // Int!
+    }
+    getVehicle: { // args
+      id: number; // Int!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {

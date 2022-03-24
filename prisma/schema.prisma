@@ -11,10 +11,10 @@ datasource db {
 }
 
 model Profile {
-  id        Int @id @default(autoincrement()) 
+  id        Int @id @default(autoincrement())
   name      String
-  email     String 
-  address   String 
+  email     String
+  address   String
   gender    String
   phone     String
   user      User?
